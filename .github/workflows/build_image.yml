@@ -21,7 +21,7 @@ jobs:
         run: |
           export DATE=$(date +%Y%m%d)
           # use that here since the variable are not present before start, so can't be in env
-          export LOGIN=$GITHUB_REPOSITORY_OWNER
+          export LOGIN=$(echo $GITHUB_REPOSITORY_OWNER | tr 'A-Z' 'a-z')
 
           pip install requests
           echo $PASSWORD | docker login $REGISTRY -u $LOGIN --password-stdin
